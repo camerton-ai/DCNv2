@@ -6,7 +6,7 @@ import sys
 
 from setuptools import find_packages, setup, dist
 
-dist.Distribution().fetch_build_eggs(["torch"])
+dist.Distribution().fetch_build_eggs(["torch<=1.7.1"])
 import torch
 from torch.utils.cpp_extension import CUDA_HOME, CppExtension, CUDAExtension
 

@@ -46,10 +46,10 @@ def get_extensions():
         ])
     else:
         # raise NotImplementedError('Cuda is not available')
-        pass
+        extra_compile_args.append('-fopenmp')
     
     # extra_compile_args['cxx'].append('-fopenmp')
-    extra_compile_args.append('-fopenmp')
+    
 
     sources = [os.path.join(extensions_dir, s) for s in sources]
     include_dirs = [extensions_dir]

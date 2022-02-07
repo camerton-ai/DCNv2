@@ -4,8 +4,10 @@ import glob
 import os
 import sys
 
-import torch
 from setuptools import find_packages, setup
+
+dist.Distribution().fetch_build_eggs(["torch"])
+import torch
 from torch.utils.cpp_extension import CUDA_HOME, CppExtension, CUDAExtension
 
 requirements = ["torch", "torchvision"]

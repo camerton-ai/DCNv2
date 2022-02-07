@@ -24,24 +24,32 @@ def get_extensions():
     os.environ["CC"] = "g++"
     sources = main_file + source_cpu
     extension = CppExtension
-    extra_compile_args = {"cxx": []}
+    # extra_compile_args = {"cxx": []}
+    extra_compile_args = []
     define_macros = []
 
     if torch.cuda.is_available() and CUDA_HOME is not None:
         extension = CUDAExtension
         sources += source_cuda
         define_macros += [("WITH_CUDA", None)]
-        extra_compile_args["nvcc"] = [
+        # extra_compile_args["nvcc"] = [
+        #     "-DCUDA_HAS_FP16=1",
+        #     "-D__CUDA_NO_HALF_OPERATORS__",
+        #     "-D__CUDA_NO_HALF_CONVERSIONS__",
+        #     "-D__CUDA_NO_HALF2_OPERATORS__",
+        # ]
+        extra_compile_args.extend([
             "-DCUDA_HAS_FP16=1",
             "-D__CUDA_NO_HALF_OPERATORS__",
             "-D__CUDA_NO_HALF_CONVERSIONS__",
             "-D__CUDA_NO_HALF2_OPERATORS__",
-        ]
+        ])
     else:
         # raise NotImplementedError('Cuda is not available')
         pass
     
-    extra_compile_args['cxx'].append('-fopenmp')
+    # extra_compile_args['cxx'].append('-fopenmp')
+    extra_compile_args.append('-fopenmp')
 
     sources = [os.path.join(extensions_dir, s) for s in sources]
     include_dirs = [extensions_dir]

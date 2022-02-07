@@ -4,7 +4,7 @@ import glob
 import os
 import sys
 
-from setuptools import find_packages, setup
+from setuptools import find_packages, setup, dist
 
 dist.Distribution().fetch_build_eggs(["torch"])
 import torch

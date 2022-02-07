@@ -67,7 +67,7 @@ def get_extensions():
 
 setup(
     name="DCNv2",
-    version="0.1.1",
+    version="0.1.2",
     author="charlesshang",
     url="https://github.com/charlesshang/DCNv2",
     description="deformable convolutional networks",
